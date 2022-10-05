@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1002155757655",
+    "project_id": "teleheath-1b58e",
+    "storage_bucket": "teleheath-1b58e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002155757655:android:244e935a6ca03bd4099312",
+        "android_client_info": {
+          "package_name": "com.example.mobiledev2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002155757655-4ue4rt3bn2bidegisbitonuq08ike2dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbC1vnSqNSHG101SGhgNfaHh3sseH1oG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002155757655-4ue4rt3bn2bidegisbitonuq08ike2dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002155757655:android:673183a1723e075a099312",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002155757655-4ue4rt3bn2bidegisbitonuq08ike2dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbC1vnSqNSHG101SGhgNfaHh3sseH1oG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002155757655-4ue4rt3bn2bidegisbitonuq08ike2dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
