@@ -15,6 +15,7 @@ public class HomePage extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView textView;
     private Button button_logout;
+    private Button button_call;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,15 @@ public class HomePage extends AppCompatActivity {
         textView = findViewById(R.id.icon_homepage);
         textView.setText("Email "+name);
         button_logout =  findViewById(R.id.button_logout);
+        button_call = findViewById(R.id.button_call);
+        button_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(HomePage.this,VideoCall.class));
+                finish();
+            }
+        });
         button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
