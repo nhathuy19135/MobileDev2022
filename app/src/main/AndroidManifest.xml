@@ -16,10 +16,16 @@
         android:theme="@style/Theme.MobileDev2022"
         tools:targetApi="31">
         <activity
+            android:name=".AllFeaturesActivity"
+            android:exported="false"
+            android:parentActivityName=".HomePage"
+            />
+        <activity
             android:name=".HomePage"
             android:exported="false"
             android:label="@string/title_activity_home_page"
-            android:theme="@style/Theme.MobileDev2022.NoActionBar" />
+            android:theme="@style/Theme.MobileDev2022.NoActionBar"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true">
