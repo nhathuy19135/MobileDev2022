@@ -9,8 +9,10 @@
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.19" />
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19" />
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/drawable/loginpagebackground.xml" value="0.19" />
-        <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/activity_home_page.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/activity_chat.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/activity_home_page.xml" value="0.2" />
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/chatline.xml" value="0.253125" />
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/fragment_first.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/layout/fragment_second.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/84833/AndroidStudioProjects/TeleHealth/app/src/main/res/menu/profile.xml" value="0.25416666666666665" />

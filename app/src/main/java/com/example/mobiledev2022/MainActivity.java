@@ -12,13 +12,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private Button buttonSignIn;
@@ -47,11 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Missing input",Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                if (isSignIn) {
-                    handleSignUp();
-                } else {
-                    handleLogin();
-                }
+                handleLogin();
             }
 
         });
@@ -90,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     startActivity(new Intent(MainActivity.this,HomePage.class));
                     Toast.makeText(MainActivity.this,"Log In",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,HomePage.class));
                     finish();
                 } else {
                     Toast.makeText(MainActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
