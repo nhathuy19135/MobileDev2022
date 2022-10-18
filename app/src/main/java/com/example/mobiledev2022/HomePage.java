@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,10 +36,17 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String room = roomID.getText().toString();
-                Intent intent = new Intent(HomePage.this,Chat.class);
-                intent.putExtra("userEmail",userEmail);
-                intent.putExtra("room",room);
-                startActivity(intent);
+                if (room.equals("")){
+                    Toast toast  = Toast.makeText(HomePage.this,"Enter Room Number or Room Name", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    Intent intent = new Intent(HomePage.this,Chat.class);
+                    intent.putExtra("userEmail",userEmail);
+                    intent.putExtra("room",room);
+                    startActivity(intent);
+                }
+
             }
         });
         button_logout.setOnClickListener(new View.OnClickListener() {
