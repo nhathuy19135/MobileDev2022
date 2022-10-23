@@ -6,22 +6,26 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginTop="10dp"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="20dp"
+    android:layout_margin="10dp"
+    >
 
     <TextView
         android:id="@+id/chatline_recycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/chatline_background"
         android:padding="5dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toEndOf="@+id/userName_recycle"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/userName_recycle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"

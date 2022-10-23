@@ -8,18 +8,6 @@ public class Patient {
     private String phone;
     private String gender;
 
-    public Patient() {
-    }
-
-    public Patient(String patientID, String image, String name, String email, String phone, String gender) {
-        this.patientID = patientID;
-        this.image = image;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.gender = gender;
-    }
-
     public String getPatientID() {
         return this.patientID;
     }

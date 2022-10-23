@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,13 +20,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity {
     private Button buttonSignIn;
     private FirebaseAuth firebaseAuth;
-    private GoogleSignInOptions gso;
-    private GoogleSignInClient gsc;
     private TextView textView;
     private EditText email,password;
     private boolean isSignIn = false;
@@ -48,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Missing input",Toast.LENGTH_SHORT).show();
                 return;
             } else {
-                handleLogin();
+                if (isSignIn) {
+                    handleSignUp();
+                } else {
+                    handleLogin();
+                }
             }
 
         });
@@ -65,20 +66,19 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("Already have an account");
             }
         });
-
     }
     private void handleSignUp () {
-       firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
-               .addOnCompleteListener(task -> {
-                   if (task.isSuccessful()) {
-                       Toast.makeText(MainActivity.this,"Sign Up",Toast.LENGTH_SHORT).show();
-                       startActivity(new Intent(MainActivity.this,HomePage.class));
-                       finish();
-                   } else {
-                       Toast.makeText(MainActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+        firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this,"Sign Up",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this,HomePage.class));
+                        finish();
+                    } else {
+                        Toast.makeText(MainActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
 
-                   }
-               });
+                    }
+                });
     }
     private void handleLogin() {
         firebaseAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -87,17 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     startActivity(new Intent(MainActivity.this,HomePage.class));
                     Toast.makeText(MainActivity.this,"Log In",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,HomePage.class));
                     finish();
                 } else {
                     Toast.makeText(MainActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    private void loginGoogle() {
-        Intent intent = gsc.getSignInIntent();
-        startActivity(intent);
-        isSignIn=false;
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class HomePage extends AppCompatActivity {
@@ -59,6 +60,7 @@ public class HomePage extends AppCompatActivity {
         });
 
     }
+
     @Override
     public  boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.profile,menu);

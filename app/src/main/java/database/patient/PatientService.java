@@ -1,25 +1,30 @@
 package database.patient;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PatientService {
-    FirebaseFirestore firebaseFirestore;
+    private FirebaseFirestore firebaseFirestore;
 
     public void addNewUser (Patient user) {
-        Map<String, Object> userDTO = userDTO(user);
-        firebaseFirestore.collection("users").document(user.getPatientID()).set(userDTO);
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        CollectionReference dbUsers = firebaseFirestore.collection("Patients");
+        dbUsers.add(user);
     }
-    public Map<String, Object> userDTO(Patient user) {
+    public boolean isUserExisted(Patient user) {
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        CollectionReference dbUsers = firebaseFirestore.collection("Patients");
+        return dbUsers.equals(user);
+    }
 
-        HashMap<String,Object> userDTO = new HashMap<>();
-        userDTO.put("email",user.getEmail());
-        userDTO.put("userID",user.getPatientID());
-        userDTO.put("userName",user.getName());
-        return userDTO;
-    }
 
 
 
