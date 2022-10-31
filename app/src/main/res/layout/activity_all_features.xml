@@ -355,14 +355,14 @@
     </ScrollView>
 
 
-<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--            android:id="@+id/bottomNavigationView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:menu="@menu/bottom_nav_menu"-->
-<!--            android:layout_below="@id/title_view"-->
-<!--            android:layout_marginTop="610dp"-->
-<!--            />-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_nav_menu"
+            android:layout_below="@id/title_view"
+            android:layout_marginTop="610dp"
+            />
 
 
 

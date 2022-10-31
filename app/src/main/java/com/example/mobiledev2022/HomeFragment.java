@@ -18,7 +18,7 @@ import android.widget.Button;
  */
 public class HomeFragment extends Fragment {
 
-    private Button toAllFeaturesButton;
+    private View toAllFeaturesButton;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,13 +60,14 @@ public class HomeFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        toAllFeaturesButton = view.findViewById(R.id.btnAll);
+        toAllFeaturesButton = view.findViewById(R.id.card4);
         toAllFeaturesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,5 +79,6 @@ public class HomeFragment extends Fragment {
         return view;
 
     }
+
 
 }
