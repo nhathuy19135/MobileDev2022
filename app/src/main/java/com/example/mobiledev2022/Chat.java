@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,29 +26,41 @@ public class Chat extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private TextView textView;
     private RecyclerView recyclerView;
-    private MessageAdapter messageAdapter;
     private Integer limitsChatLine ;
     private ArrayList<Message> messageList;
+    private MessageAdapter messageAdapter;
+    private  LinearLayoutManager linearLayoutManager;
+    private boolean isLoading ;
+    private static int firstVisibleInListview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.limitsChatLine = 0;
-        setContentView(R.layout.activity_chat);
-        addDataToArrayList();
         initView();
-        sendMessage();
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+        addDataToArrayList();
+        setUpRecycle();
+        initEndlessScrolling();
+        addMessageToDB();
     }
-    public void sendMessage() {
+    private void  initView() {
+        this.limitsChatLine = 6;
+        this.isLoading = false;
+        setContentView(R.layout.activity_chat);
+        button_Send = findViewById(R.id.button_Send);
+        chatBox = findViewById(R.id.chatBox);
+        textView = findViewById(R.id.textView);
+        recyclerView = findViewById(R.id.recycler1);
+        recyclerView.setHasFixedSize(true);
+    }
+    private void setUpRecycle() {
+        messageList = new ArrayList<>();
+        this.messageAdapter = new MessageAdapter(messageList);
+        this.linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(messageAdapter);
+        recyclerView.getLayoutManager().scrollToPosition(messageList.size()-1);
+    }
+
+    public void addMessageToDB() {
         String room = getIntent().getExtras().getString("room");
         String userEmail = getIntent().getExtras().getString("userEmail");
         textView.setText(room);
@@ -58,26 +71,14 @@ public class Chat extends AppCompatActivity {
             message.setRoomID(room);
             message.setSender(userEmail);
             sendMessage(message,room);
-        });}
-    public void initView () {
-        button_Send = findViewById(R.id.button_Send);
-        chatBox = findViewById(R.id.chatBox);
-        textView = findViewById(R.id.textView);
-        setUpRecycleView();
-    }
-    public void setUpRecycleView(){
-        recyclerView = findViewById(R.id.recycler1);
-        messageList = new ArrayList<>();
-        MessageAdapter messageAdapter = new MessageAdapter(messageList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(messageAdapter);
+            addDataToArrayList();
+        });
     }
     private void addDataToArrayList() {
         String room = getIntent().getExtras().getString("room");
         databaseReference = FirebaseDatabase.getInstance().getReference(room);
-        this.limitsChatLine = 7;
-        Query query = databaseReference.limitToLast(limitsChatLine);
+        this.limitsChatLine++;
+        Query query = databaseReference.orderByKey().limitToLast(limitsChatLine);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,6 +87,7 @@ public class Chat extends AppCompatActivity {
                     Message snapshot1 =  index.getValue(Message.class);
                     messageList.add(snapshot1);
                 }
+                messageAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -93,12 +95,47 @@ public class Chat extends AppCompatActivity {
             }
         });
     }
+    private void initEndlessScrolling() {
+        firstVisibleInListview = this.linearLayoutManager.findFirstVisibleItemPosition();
+        this.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (!isLoading) {
+                    Log.e("view", String.valueOf(linearLayoutManager.findFirstVisibleItemPosition()));
+                    if (linearLayoutManager != null && linearLayoutManager.findFirstVisibleItemPosition() == 0
+                    ) {
+                        loadMore();
+                        isLoading = true;
+                    }
+                }
+            }
+        });
+    }
+    private void loadMore() {
+        messageList.add(null);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                messageList.remove(messageList.size()-1);
+                int positionScrolling = messageList.size();
+                messageAdapter.notifyItemRemoved(positionScrolling);
+                limitsChatLine +=4 ;
+                messageAdapter.notifyDataSetChanged();
+                addDataToArrayList();
+                isLoading=false;
+            }
+        },1500);
+    }
     private void sendMessage(Message message,String room) {
         databaseReference = FirebaseDatabase.getInstance().getReference(room);
         databaseReference.push().setValue(message);
-        textView.setText(message.getMessage());
-        addDataToArrayList();
-        setUpRecycleView();
         chatBox.setText("");
     }
 }

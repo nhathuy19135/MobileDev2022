@@ -1,21 +1,20 @@
 package database.Entity;
 
 import java.util.Date;
-import java.util.UUID;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 public class Message {
     private String message;
     private String sender;
     private String roomID;
-    private Long date;
+    private String date;
     private String messageID;
-    public Message(String message, String sender, String roomID) {
-        this.message = message;
-        this.sender = sender;
-        this.roomID = roomID;
-        this.date=  new Date().getTime();
+    public Message() {
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        this.date = dateFormat.format(date);
     }
-
     public void setMessageID(String messageID) {
         this.messageID = messageID;
     }
@@ -24,13 +23,10 @@ public class Message {
         return messageID;
     }
 
-    public Long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Message() {
-
-    }
 
     public String getMessage() {
         return message;
@@ -54,9 +50,5 @@ public class Message {
 
     public void setRoomID(String roomID) {
         this.roomID = roomID;
-    }
-
-    public String toString1() {
-        return this.message+" " + this.roomID;
-    }
+        }
 }

@@ -5,19 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mobiledev2022.R;
 import database.Entity.Message;
 import java.util.List;
-
 public class MessageAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
     private List<Message> chatLineList;
-    public MessageAdapter(List<Message> messageList) {
+     public MessageAdapter(List<Message> messageList) {
         this.chatLineList = messageList;
     }
     @NonNull
@@ -31,7 +28,6 @@ public class MessageAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolde
             return new MessageViewLoading(view);
         }
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MessageViewHolder) {
@@ -51,6 +47,7 @@ public class MessageAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemCount() {
         return chatLineList == null ? 0 : chatLineList.size();
     }
+
     @Override
     public int getItemViewType(int position) {
         return chatLineList.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;

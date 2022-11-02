@@ -34,6 +34,7 @@ public class HomePage extends AppCompatActivity {
         roomID = findViewById(R.id.roomID);
 
         button_chatRoom.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String room = roomID.getText().toString();
