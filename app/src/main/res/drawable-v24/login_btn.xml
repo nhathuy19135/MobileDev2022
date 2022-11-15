@@ -1,23 +1,11 @@
-<vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
-    android:width="360dp"
-    android:height="70dp"
-    android:viewportWidth="360"
-    android:viewportHeight="70"
-    >
 
-    <group>
-
-        <clip-path
-            android:pathData="M0 0H360V70H0V0Z"
-            />
-
-        <path
-            android:pathData="M0 0V70H360V0"
-            android:fillColor="#2baba9"
-            />
-
-    </group>
-
-</vector>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:shape="rectangle">
+    <solid android:color="@color/buttonlogin" />
+    <corners
+        android:bottomLeftRadius="500dp"
+        android:bottomRightRadius="500dp"
+        android:topLeftRadius="500dp"
+        android:topRightRadius="500dp" />
+</shape>

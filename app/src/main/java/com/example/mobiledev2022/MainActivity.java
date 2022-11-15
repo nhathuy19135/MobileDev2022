@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
         buttonSignIn = findViewById(R.id.buttonSignIn);
         textView = findViewById(R.id.textView);
         email= findViewById(R.id.edit_email);
@@ -66,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
                 email.setVisibility(View.VISIBLE);
                 buttonSignIn.setText("Sign In");
                 textView.setText("Already have an account");
+            }
+        });
+
+        findViewById(R.id.sign_up_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
             }
         });
 
