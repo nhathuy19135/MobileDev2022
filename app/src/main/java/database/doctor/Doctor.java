@@ -1,15 +1,18 @@
 package database.doctor;
 
-public class DoctorModel {
-    private String id;
+public class Doctor {
+    private String doctorID;
     private String name;
     private String image;
     private String gender;
     private String field;
     private String title;
 
+    public Doctor() {
+    }
 
-    public DoctorModel(String name, String image, String gender, String field, String title) {
+    public Doctor(String doctorID, String name, String image, String gender, String field, String title) {
+        this.doctorID = doctorID;
         this.name = name;
         this.image = image;
         this.gender = gender;
@@ -17,16 +20,16 @@ public class DoctorModel {
         this.title = title;
     }
 
-    public String getId() {
-        return id;
+    public String getDoctorID() {
+        return this.doctorID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDoctorID(String doctorID) {
+        this.doctorID = doctorID;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -34,7 +37,7 @@ public class DoctorModel {
     }
 
     public String getImage() {
-        return image;
+        return this.image;
     }
 
     public void setImage(String image) {
@@ -42,7 +45,7 @@ public class DoctorModel {
     }
 
     public String getGender() {
-        return gender;
+        return this.gender;
     }
 
     public void setGender(String gender) {
@@ -50,7 +53,7 @@ public class DoctorModel {
     }
 
     public String getField() {
-        return field;
+        return this.field;
     }
 
     public void setField(String field) {
@@ -58,22 +61,11 @@ public class DoctorModel {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return "Doctor{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", image='" + image + '\'' +
-                ", gender='" + gender + '\'' +
-                ", field='" + field + '\'' +
-                ", title='" + title + '\'' +
-                '}';
-    }
 }
