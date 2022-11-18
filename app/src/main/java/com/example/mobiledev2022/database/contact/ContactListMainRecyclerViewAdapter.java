@@ -1,14 +1,13 @@
 package com.example.mobiledev2022.database.contact;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.mobiledev2022.R;
 
@@ -38,11 +37,11 @@ public class ContactListMainRecyclerViewAdapter extends RecyclerView.Adapter<Con
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-//        Contact contact = (Contact) contactList.get(position);
+        Contact contact = (Contact) contactList.get(position);
 
         // Populate user interface
-//        viewHolder.fullNameTextView.setText(contact.getFirstNameString() + " " + contact.getLastNameString());
-//        viewHolder.emailTextView.setText(contact.getEmailString());
+        viewHolder.fullNameTextView.setText(contact.getFirstNameString() + " " + contact.getLastNameString());
+        viewHolder.emailTextView.setText(contact.getEmailString());
     }
 
     @Override

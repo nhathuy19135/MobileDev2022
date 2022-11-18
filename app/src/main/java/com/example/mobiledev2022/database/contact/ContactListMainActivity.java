@@ -1,17 +1,17 @@
 package com.example.mobiledev2022.database.contact;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobiledev2022.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,14 +42,14 @@ public class ContactListMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list_main);
-        contactsFirestoreManager = ContactsFirestoreManager.newInstance();
+
         // Get a reference of contactsFirestoreManager
         // TODO: 3.1 Getting the Backend Reference
+        contactsFirestoreManager = ContactsFirestoreManager.newInstance();
 
         // Set up the toolbar
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_alias));
-        //setSupportActionBar(toolbar);
 
         // Set up the contactListRecyclerView
         contactListRecyclerView = findViewById(R.id.contactListRecyclerView);
@@ -67,7 +67,6 @@ public class ContactListMainActivity extends AppCompatActivity {
         addFloatingButton.setOnClickListener(new AddFloatingButtonOnClickListener());
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -77,30 +76,40 @@ public class ContactListMainActivity extends AppCompatActivity {
     }
 
 //    Uncomment this class...
-//    private class GetAllContactsOnCompleteListener implements OnCompleteListener<QuerySnapshot> {
-//
-//        @Override
-//        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//
-//            // TODO: 3.3 Reading Contacts
-//
-//            // TODO 3.4 Populating the Main Screen
-//
-//            // If the contactList is empty, show the emptyTextView. Otherwise, show the contactListRecyclerView
-//            if (contactList == null || contactList.size() == 0) {
-//                contactListRecyclerView.setVisibility(View.GONE);
-//                emptyTextView.setVisibility(View.VISIBLE);
-//
-//            } else {
-//                contactListRecyclerView.setVisibility(View.VISIBLE);
-//                emptyTextView.setVisibility(View.GONE);
-//            }
-//        }
-//    }
+    private class GetAllContactsOnCompleteListener implements OnCompleteListener<QuerySnapshot> {
+
+        @Override
+        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            if (task.isSuccessful()){
+                QuerySnapshot querySnapshot = task.getResult();
+                if (querySnapshot != null){
+                    contactList = querySnapshot.toObjects(Contact.class);
+                    populateContactRecyclerView(contactList);
+                }
+            } else {
+                Log.w(TAG, "Error getting docs: ", task.getException());
+            }
+
+            // TODO: 3.3 Reading Contacts
+
+            // TODO 3.4 Populating the Main Screen
+
+            // If the contactList is empty, show the emptyTextView. Otherwise, show the contactListRecyclerView
+            if (contactList == null || contactList.size() == 0) {
+                contactListRecyclerView.setVisibility(View.GONE);
+                emptyTextView.setVisibility(View.VISIBLE);
+
+            } else {
+                contactListRecyclerView.setVisibility(View.VISIBLE);
+                emptyTextView.setVisibility(View.GONE);
+            }
+        }
+    }
 
     /** Sets the contact List in the Adapter to populate the RecyclerView */
     private void populateContactRecyclerView(List<Contact> contactList) {
-
+        ContactListMainRecyclerViewAdapter contactListMainRecyclerViewAdapter = new ContactListMainRecyclerViewAdapter(contactList, new ContactListRecyclerViewOnItemClickListener());
+        contactListRecyclerView.setAdapter(contactListMainRecyclerViewAdapter);
         // TODO: 3.4 Populating the Main Screen
     }
 
@@ -131,9 +140,8 @@ public class ContactListMainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            contactsFirestoreManager.sendContactsBulk();
             // TODO: 3.2 Sending Bulk Data to Firestore
-
+            contactsFirestoreManager.sendContactsBulk();
             Toast.makeText(ContactListMainActivity.this, "Contacts bulk sent", Toast.LENGTH_LONG).show();
         }
     }
@@ -149,13 +157,6 @@ public class ContactListMainActivity extends AppCompatActivity {
             intent.putExtra(ContactDetailsActivity.OPERATION, ContactDetailsActivity.CREATING);
 
             startActivity(intent);
-        }
-    }
-
-    private class GetAllContactsOnCompleteListener implements OnCompleteListener<QuerySnapshot> {
-        @Override
-        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
         }
     }
 }

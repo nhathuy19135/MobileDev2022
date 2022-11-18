@@ -20,7 +20,7 @@
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:text="bruhssss" />
+            android:text="bruh" />
 
         <TextView
             android:id="@+id/emailTextView"
