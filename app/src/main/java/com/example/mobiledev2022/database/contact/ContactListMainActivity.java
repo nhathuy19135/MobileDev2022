@@ -119,18 +119,20 @@ public class ContactListMainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
-            int itemIndex = contactListRecyclerView.indexOfChild(view);
-            Log.d("ContactListMainActivity", "" + itemIndex);
-
-            Contact contact = contactList.get(itemIndex);
-
+            int itemPosition = contactListRecyclerView.indexOfChild(view);
+            Log.d("ContactListMainActivity", "" + itemPosition);
+            Contact contact = contactList.get(itemPosition);
             Intent intent = new Intent();
             intent.setClass(ContactListMainActivity.this, ContactDetailsActivity.class);
             intent.putExtra(ContactDetailsActivity.OPERATION, ContactDetailsActivity.EDITING);
+            intent.putExtra(ContactsFirestoreDBContract.DOCUMENT_ID, contact.getDocumentId());
+            intent.putExtra(ContactsFirestoreDBContract.FIELD_FIRST_NAME, contact.getFirstNameString());
+            intent.putExtra(ContactsFirestoreDBContract.FIELD_LAST_NAME, contact.getLastNameString());
+            intent.putExtra(ContactsFirestoreDBContract.EMAIL, contact.getEmailString());
+            startActivity(intent);
 
             // TODO: 4.2 Updating a Contact
 
-            startActivity(intent);
         }
     }
 

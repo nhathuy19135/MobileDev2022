@@ -1,11 +1,6 @@
 package com.example.mobiledev2022.database.contact;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-import com.example.mobiledev2022.R;
-
+import static com.example.mobiledev2022.database.contact.ContactsFirestoreDBContract.*;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +9,9 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mobiledev2022.R;
+
 
 public class ContactDetailsActivity extends AppCompatActivity {
 
@@ -45,6 +43,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
 
         // Get a reference of contactsFirestoreManager
         // TODO: 4.1 Creating a Contact
+        contactsFirestoreManager = ContactsFirestoreManager.newInstance();
 
         firstNameEditText = findViewById(R.id.firstNameEditText);
         lastNameEditText = findViewById(R.id.lastNameEditText);
@@ -68,6 +67,11 @@ public class ContactDetailsActivity extends AppCompatActivity {
             okButton.setText("UPDATE");
             deleteButton.setVisibility(View.VISIBLE);
 
+            documentId = bundle.getString(DOCUMENT_ID);
+            firstNameEditText.setText(bundle.getString(FIELD_FIRST_NAME));
+            lastNameEditText.setText(bundle.getString(FIELD_LAST_NAME));
+            emailEditText.setText(bundle.getString(EMAIL));
+
             // TODO: 4.2 Updating a Contact
         }
     }
@@ -81,13 +85,15 @@ public class ContactDetailsActivity extends AppCompatActivity {
             String lastNameString = lastNameEditText.getText().toString();
             String emailString = emailEditText.getText().toString();
 
-            // Contact contact = new Contact(documentId, firstNameString, lastNameString, emailString);
+            Contact contact = new Contact(firstNameString, lastNameString, emailString);
 
             if (operationTypeString.equals(CREATING)) {
                 // TODO: 4.1 Creating a Contact
+                contactsFirestoreManager.createDocument(contact);
 
             } else if (operationTypeString.equals(EDITING)) {
                 // TODO: 4.2 Updating a Contact
+                contactsFirestoreManager.updateContact(documentId, contact);
             }
 
             finish();
@@ -100,6 +106,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         public void onClick(View view) {
 
             // TODO: 4.3 Deleting a Contact
+            contactsFirestoreManager.deleteContact(documentId);
 
             finish();
         }

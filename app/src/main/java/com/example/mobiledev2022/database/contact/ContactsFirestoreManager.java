@@ -28,8 +28,7 @@ public class ContactsFirestoreManager {
     public void getAllContacts (OnCompleteListener<QuerySnapshot> onCompleteListener){
         contactsCollectionReference.get().addOnCompleteListener(onCompleteListener);
     }
-    public void updateContact(Contact contact){
-        String documentId = contact.getDocumentId();
+    public void updateContact(String documentId, Contact contact){
         DocumentReference documentReference = contactsCollectionReference.document(documentId);
         documentReference.set(contact);
     }
