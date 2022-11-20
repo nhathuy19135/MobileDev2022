@@ -21,15 +21,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-    private Button buttonSignIn;
+    private Button buttonSignIn,buttonSignUp;
     private FirebaseAuth firebaseAuth;
     private TextView textView;
     private EditText email,password;
     private boolean isSignIn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        buttonSignUp = findViewById(R.id.mainSigUp);
         buttonSignIn = findViewById(R.id.buttonSignIn);
         textView = findViewById(R.id.textView);
         email= findViewById(R.id.edit_email);
@@ -39,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this,HomePage.class));
             finish();
         }
-
+        buttonSignUp.setOnClickListener(v ->{
+            handleSignUp();
+        });
         buttonSignIn.setOnClickListener(view -> {
             if (email.getText().toString().isEmpty() || email.getText().toString().isEmpty() ) {
                 Toast.makeText(MainActivity.this,"Missing input",Toast.LENGTH_SHORT).show();
@@ -53,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
         textView.setOnClickListener(view -> {
             if (isSignIn) {
                 isSignIn = false ;
@@ -68,17 +71,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void handleSignUp () {
-        firebaseAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this,"Sign Up",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(MainActivity.this,HomePage.class));
-                        finish();
-                    } else {
-                        Toast.makeText(MainActivity.this,task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+        startActivity(new Intent(MainActivity.this,SignUp.class));
+        finish();
     }
     private void handleLogin() {
         firebaseAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
