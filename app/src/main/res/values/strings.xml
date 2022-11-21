@@ -7,7 +7,9 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="titile_homepage">Tele Health</string>
-    <string name="app_alias">Doctor List</string>
+    <string name="contact_alias">Contact List</string>
+    <string name="doctor_alias">Doctor List</string>
+    <string name="patient_alias">Patient List</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

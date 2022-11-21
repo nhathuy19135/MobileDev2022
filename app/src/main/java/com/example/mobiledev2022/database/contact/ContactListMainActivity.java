@@ -49,7 +49,7 @@ public class ContactListMainActivity extends AppCompatActivity {
 
         // Set up the toolbar
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_alias));
+        toolbar.setTitle(getString(R.string.contact_alias));
 
         // Set up the contactListRecyclerView
         contactListRecyclerView = findViewById(R.id.contactListRecyclerView);

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobiledev2022.database.contact.ContactListMainActivity;
+import com.example.mobiledev2022.database.doctor.Doctor;
+import com.example.mobiledev2022.database.doctor.DoctorMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
@@ -17,6 +19,7 @@ public class HomePage extends AppCompatActivity {
     private TextView textView;
     private Button button_logout;
     private Button button_crud;
+    private Button button_doctor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,13 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomePage.this, ContactListMainActivity.class));
+            }
+        });
+        button_doctor = findViewById(R.id.button_doctor);
+        button_doctor.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
             }
         });
     }
