@@ -31,6 +31,7 @@ public class Chat extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private  LinearLayoutManager linearLayoutManager;
     private boolean isLoading ;
+
     private static int firstVisibleInListview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

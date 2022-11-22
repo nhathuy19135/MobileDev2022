@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ public class SignUp extends AppCompatActivity {
     private boolean isLoading = false;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    private DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,17 +122,18 @@ public class SignUp extends AppCompatActivity {
         });
     }
     private void createUser(Patient newUser) {
+        Log.e("create","test");
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Patients");
         db.push().setValue(newUser);
         Map<String,Object> patient = new HashMap<>();
-        patient.put("avatar",avatarDb);
-        patient.put("id",newUser.getPatientID());
-        patient.put("UserName",newUser.getName());
-        patient.put("Email",newUser.getEmail());
-        patient.put("sender","asds");
-        FirebaseFirestore db1 = FirebaseFirestore.getInstance();
-        db1.collection("Patients").add(newUser);
+        patient.put("image",avatarDb);
+        patient.put("patientID",newUser.getPatientID());
+        patient.put("name",newUser.getName());
+        patient.put("email",newUser.getEmail());
+        FirebaseFirestore mDatabase = FirebaseFirestore.getInstance();
+        mDatabase.collection("Patients").document(newUser.getPatientID()).set(newUser);
     }
+
     private void signUp(){
         isLoading = true;
         firebaseAuth.createUserWithEmailAndPassword(binding.signUpEmailAddress.getText().toString(),binding.signUpPassword.getText().toString())
