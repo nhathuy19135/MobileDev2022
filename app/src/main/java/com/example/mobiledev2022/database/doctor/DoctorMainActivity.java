@@ -120,7 +120,7 @@ public class DoctorMainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             int itemPosition = doctorRecyclerView.indexOfChild(view);
-            Log.d("ContactListMainActivity", "" + itemPosition);
+            Log.d("DoctorMainActivity", "" + itemPosition);
             Doctor doctor = doctorList.get(itemPosition);
             Intent intent = new Intent();
             intent.setClass(DoctorMainActivity.this, DoctorDetailsActivity.class);

@@ -40,4 +40,12 @@ tools:context=".MainActivity">
         android:text="doctor crud"
         app:layout_constraintBottom_toTopOf="@+id/button_crud"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_patient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="patient crud"
+        app:layout_constraintBottom_toTopOf="@+id/button_doctor"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

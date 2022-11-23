@@ -16,6 +16,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FFFF9900</color>
     <color name="colorDoctor">#039BE5</color>
+    <color name="colorPatient">#A7FFEB</color>
     <color name="colorDisabled">#88FF9900</color>
     <color name="weeklyWeatherBackgroundColor">#FFF9F9F9</color>
 
