@@ -124,7 +124,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_email"
+                    android:src="@drawable/ic_lock"
                     app:tint="#DB0030">
 
                 </ImageView>
@@ -189,7 +189,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_email"
+                    android:src="@drawable/ic_account"
                     app:tint="#DB0030">
 
                 </ImageView>
@@ -254,7 +254,7 @@
                     android:layout_height="25dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_email"
+                    android:src="@drawable/ic_phone"
                     app:tint="#DB0030">
 
                 </ImageView>

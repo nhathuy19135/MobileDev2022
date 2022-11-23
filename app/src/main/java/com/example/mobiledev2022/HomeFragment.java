@@ -76,6 +76,19 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        toAllFeaturesButton = view.findViewById(R.id.card_cough);
+        toAllFeaturesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SymtomPage_Cough.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
         return view;
 
     }

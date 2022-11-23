@@ -246,6 +246,7 @@
                     >
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/card_cough"
                         android:layout_width="120dp"
                         android:layout_height="140dp"
                         app:cardCornerRadius="15dp"

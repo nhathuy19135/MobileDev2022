@@ -19,6 +19,7 @@
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/background.xml" value="0.262" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/background_si_input.xml" value="0.2595" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/calendar.xml" value="0.292" />
+        <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/home.xml" value="0.214" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.294" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.294" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.294" />
@@ -30,6 +31,7 @@
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/activity_profile.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/activity_setting.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/activity_sign_up.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/activity_symtom_page_cough.xml" value="0.29010416666666666" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/fragment_home.xml" value="0.33434420015163" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/fragment_profile.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/Admin/Desktop/Mobile Project/MobileDev2022/app/src/main/res/layout/fragment_settings.xml" value="0.2942708333333333" />
