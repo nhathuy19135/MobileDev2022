@@ -21,14 +21,39 @@ tools:context=".MainActivity">
         android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:id="@+id/button_crud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="crud test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="doctor crud"
+        app:layout_constraintBottom_toTopOf="@+id/button_crud"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_patient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="patient crud"
+        app:layout_constraintBottom_toTopOf="@+id/button_doctor"
+        app:layout_constraintStart_toStartOf="parent" />
+        
         android:id="@+id/button_call"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CALL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
