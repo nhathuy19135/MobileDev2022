@@ -5,20 +5,6 @@ public class Patient {
     private String image;
     private String name;
     private String email;
-    private String phone;
-    private String gender;
-
-    public Patient() {
-    }
-
-    public Patient(String patientID, String image, String name, String email, String phone, String gender) {
-        this.patientID = patientID;
-        this.image = image;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.gender = gender;
-    }
 
     public String getPatientID() {
         return this.patientID;
@@ -52,19 +38,5 @@ public class Patient {
         this.email = email;
     }
 
-    public String getPhone() {
-        return this.phone;
-    }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getGender() {
-        return this.gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 }

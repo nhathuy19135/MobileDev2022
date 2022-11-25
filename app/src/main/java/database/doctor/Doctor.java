@@ -1,5 +1,7 @@
 package database.doctor;
 
+import database.services.Status;
+
 public class Doctor {
     private String doctorID;
     private String name;
@@ -7,9 +9,7 @@ public class Doctor {
     private String gender;
     private String field;
     private String title;
-
-    public Doctor() {
-    }
+    private Status status ;
 
     public Doctor(String doctorID, String name, String image, String gender, String field, String title) {
         this.doctorID = doctorID;
@@ -18,6 +18,14 @@ public class Doctor {
         this.gender = gender;
         this.field = field;
         this.title = title;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getDoctorID() {
