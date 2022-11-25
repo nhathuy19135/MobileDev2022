@@ -1,6 +1,6 @@
-package com.example.mobiledev2022.database.doctor;
+package database.doctor;
 
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.COLLECTION_NAME;
+import static database.doctor.DoctorDBContract.COLLECTION_NAME;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.CollectionReference;

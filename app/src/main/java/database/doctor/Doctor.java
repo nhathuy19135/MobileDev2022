@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.doctor;
+package database.doctor;
 
 import com.google.firebase.firestore.DocumentId;
 

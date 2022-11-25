@@ -43,6 +43,7 @@
         android:layout_alignParentBottom="true"
         android:text="logout"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_crud"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -54,7 +55,6 @@
         android:text="enter room"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="logout"
         tools:ignore="MissingConstraints" />
 
 
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CALL"
-        app:layout_constraintBottom_toTopOf="@+id/button_logout"
+        app:layout_constraintBottom_toTopOf="@+id/button_roomChat"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

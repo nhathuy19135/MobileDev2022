@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.contact;
+package database.contact;
 
 import android.view.LayoutInflater;
 import android.view.View;

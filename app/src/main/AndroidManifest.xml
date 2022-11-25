@@ -27,56 +27,56 @@
             android:name=".VideoCall"
             android:exported="false" />
         <activity
-            android:name="com.example.mobiledev2022.database.patient.PatientRecyclerViewAdapter"
+            android:name="database.patient.PatientRecyclerViewAdapter"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.patient.PatientDetailActivity"
+            android:name="database.patient.PatientDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.patient.PatientMainActivity"
+            android:name="database.patient.PatientMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.doctor.DoctorDetailsActivity"
+            android:name="database.doctor.DoctorDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.doctor.DoctorRecyclerViewAdapter"
+            android:name="database.doctor.DoctorRecyclerViewAdapter"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.doctor.DoctorMainActivity"
+            android:name="database.doctor.DoctorMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.contact.ContactListMainActivity"
+            android:name="database.contact.ContactListMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mobiledev2022.database.contact.ContactDetailsActivity"
+            android:name="database.contact.ContactDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

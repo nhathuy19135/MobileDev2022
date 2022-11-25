@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.contact;
+package database.contact;
 
 import android.content.Intent;
 import android.os.Bundle;

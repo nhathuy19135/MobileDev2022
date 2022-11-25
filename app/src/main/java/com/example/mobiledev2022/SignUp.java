@@ -1,12 +1,5 @@
 package com.example.mobiledev2022;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -17,14 +10,16 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mobiledev2022.databinding.ActivitySignUpBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,7 +29,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -44,6 +38,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import database.patient.Patient;
+
 
 public class SignUp extends AppCompatActivity {
     private ActivitySignUpBinding binding;
@@ -127,11 +122,11 @@ public class SignUp extends AppCompatActivity {
         db.push().setValue(newUser);
         Map<String,Object> patient = new HashMap<>();
         patient.put("image",avatarDb);
-        patient.put("patientID",newUser.getPatientID());
+        patient.put("patientID",newUser.getDocumentId());
         patient.put("name",newUser.getName());
         patient.put("email",newUser.getEmail());
         FirebaseFirestore mDatabase = FirebaseFirestore.getInstance();
-        mDatabase.collection("Patients").document(newUser.getPatientID()).set(newUser);
+        mDatabase.collection("Patients").document(newUser.getDocumentId()).set(newUser);
     }
 
     private void signUp(){
@@ -141,7 +136,7 @@ public class SignUp extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Patient  newUser = new Patient();
                         String userId = UUID.randomUUID().toString();
-                        newUser.setPatientID(userId);
+                        newUser.setDocumentId(userId);
                         newUser.setEmail(binding.signUpEmailAddress.getText().toString());
                         newUser.setName(binding.signUpUserName.getText().toString());
                         newUser.setImage(avatarDb);

@@ -1,6 +1,6 @@
-package com.example.mobiledev2022.database.patient;
+package database.patient;
 
-import static com.example.mobiledev2022.database.patient.PatientDBContract.*;
+import static database.patient.PatientDBContract.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.contact;
+package database.contact;
 
 public final class ContactsFirestoreDBContract {
     public static final String COLLECTION_NAME = "contact";

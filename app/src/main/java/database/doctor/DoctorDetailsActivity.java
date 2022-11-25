@@ -1,13 +1,13 @@
-package com.example.mobiledev2022.database.doctor;
+package database.doctor;
 
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.DOCUMENT_ID;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_EMAIL;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_FIELD;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_FIRST_NAME;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_GENDER;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_LAST_NAME;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_PHONE_NUMBER;
-import static com.example.mobiledev2022.database.doctor.DoctorDBContract.FIELD_TITLE;
+import static database.doctor.DoctorDBContract.DOCUMENT_ID;
+import static database.doctor.DoctorDBContract.FIELD_EMAIL;
+import static database.doctor.DoctorDBContract.FIELD_FIELD;
+import static database.doctor.DoctorDBContract.FIELD_FIRST_NAME;
+import static database.doctor.DoctorDBContract.FIELD_GENDER;
+import static database.doctor.DoctorDBContract.FIELD_LAST_NAME;
+import static database.doctor.DoctorDBContract.FIELD_PHONE_NUMBER;
+import static database.doctor.DoctorDBContract.FIELD_TITLE;
 
 import android.os.Bundle;
 import android.view.View;

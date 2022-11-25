@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.patient;
+package database.patient;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

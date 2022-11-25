@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.patient;
+package database.patient;
 
 public final class PatientDBContract {
     public static final String DOCUMENT_ID = "document_id";

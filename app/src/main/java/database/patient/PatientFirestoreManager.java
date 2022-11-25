@@ -1,6 +1,4 @@
-package com.example.mobiledev2022.database.patient;
-
-import static com.example.mobiledev2022.database.patient.PatientDBContract.COLLECTION_NAME;
+package database.patient;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -20,7 +18,7 @@ public class PatientFirestoreManager {
     private FirebaseFirestore fbfs;
     private PatientFirestoreManager(){
         fbfs = FirebaseFirestore.getInstance();
-        patientReference = fbfs.collection(COLLECTION_NAME);
+        patientReference = fbfs.collection(PatientDBContract.COLLECTION_NAME);
     }
     public void getAllPatients(OnCompleteListener<QuerySnapshot> onCompleteListener){
         patientReference.get().addOnCompleteListener(onCompleteListener);

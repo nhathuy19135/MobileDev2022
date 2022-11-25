@@ -1,6 +1,6 @@
-package com.example.mobiledev2022.database.contact;
+package database.contact;
 
-import static com.example.mobiledev2022.database.contact.ContactsFirestoreDBContract.*;
+import static database.contact.ContactsFirestoreDBContract.*;
 
 import android.os.Bundle;
 import android.view.View;

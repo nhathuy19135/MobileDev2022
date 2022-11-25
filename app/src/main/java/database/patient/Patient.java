@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.patient;
+package database.patient;
 
 import com.google.firebase.firestore.DocumentId;
 
@@ -11,6 +11,8 @@ public class Patient {
     private String email;
     private String image;
     private String phoneNumber;
+    private String name;
+
     public Patient(){};
 
     public Patient(String firstName, String lastName, String gender, String email,String phoneNumber) {
@@ -77,5 +79,12 @@ public class Patient {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 

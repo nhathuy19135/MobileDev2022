@@ -1,4 +1,4 @@
-package com.example.mobiledev2022.database.doctor;
+package database.doctor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobiledev2022.R;
-import com.example.mobiledev2022.database.contact.Contact;
-import com.example.mobiledev2022.database.contact.ContactDetailsActivity;
-import com.example.mobiledev2022.database.contact.ContactListMainActivity;
-import com.example.mobiledev2022.database.contact.ContactsFirestoreDBContract;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

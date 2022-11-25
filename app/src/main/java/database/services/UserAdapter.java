@@ -2,7 +2,6 @@ package database.services;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobiledev2022.R;
+import database.patient.Patient;
 
 import java.util.List;
 
-import database.patient.Patient;
 
 public class UserAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Patient> userList;

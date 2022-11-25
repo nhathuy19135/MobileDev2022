@@ -1,4 +1,5 @@
 package com.example.mobiledev2022;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,36 +12,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import database.contact.ContactListMainActivity;
+import database.doctor.DoctorMainActivity;
+import database.patient.Patient;
+import database.patient.PatientMainActivity;
 import com.example.mobiledev2022.databinding.ActivityChatBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.example.mobiledev2022.database.contact.ContactListMainActivity;
-import com.example.mobiledev2022.database.doctor.Doctor;
-import com.example.mobiledev2022.database.doctor.DoctorMainActivity;
-import com.example.mobiledev2022.database.patient.PatientMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SnapshotMetadata;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import database.patient.Patient;
 import database.services.UserAdapter;
 public class HomePage extends AppCompatActivity {
     private PreferenceManager preferenceManager;

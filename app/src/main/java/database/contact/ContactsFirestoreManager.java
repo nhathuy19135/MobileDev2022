@@ -1,6 +1,6 @@
-package com.example.mobiledev2022.database.contact;
+package database.contact;
 
-import static com.example.mobiledev2022.database.contact.ContactsFirestoreDBContract.COLLECTION_NAME;
+import static database.contact.ContactsFirestoreDBContract.COLLECTION_NAME;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.CollectionReference;
