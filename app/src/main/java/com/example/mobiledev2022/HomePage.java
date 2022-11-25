@@ -20,6 +20,10 @@ import com.example.mobiledev2022.databinding.ActivityChatBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.example.mobiledev2022.database.contact.ContactListMainActivity;
+import com.example.mobiledev2022.database.doctor.Doctor;
+import com.example.mobiledev2022.database.doctor.DoctorMainActivity;
+import com.example.mobiledev2022.database.patient.PatientMainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +55,13 @@ public class HomePage extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseFirestore firestore;
     private RoundedImageView roundedImageView;
+
+    private Button button_crud;
+    private Button button_doctor;
+    private Button button_patient;
+    
+    private Button button_call;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,12 +109,42 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
+        button_call = findViewById(R.id.button_call);
+        button_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(HomePage.this,VideoCall.class));
+                finish();
+            }
+        });
         button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
                 startActivity(new Intent(HomePage.this, MainActivity.class));
                 finish();
+            }
+        });
+        button_crud = findViewById(R.id.button_crud);
+        button_crud.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, ContactListMainActivity.class));
+            }
+        });
+        button_doctor = findViewById(R.id.button_doctor);
+        button_doctor.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
+            }
+        });
+        button_patient = findViewById(R.id.button_patient);
+        button_patient.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomePage.this, PatientMainActivity.class));
             }
         });
     }

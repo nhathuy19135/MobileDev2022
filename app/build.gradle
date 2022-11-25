@@ -50,4 +50,5 @@ dependencies {
     implementation "com.google.android.material:material:1.6.1"
     implementation platform('com.google.firebase:firebase-bom:31.0.0')
     implementation 'com.google.firebase:firebase-messaging:20.2.1'
+    implementation 'io.agora.rtc:full-sdk:4.0.1'
 }

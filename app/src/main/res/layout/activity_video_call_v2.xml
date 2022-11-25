@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/local_video_view_container"
+        android:layout_width="0dp"
+        android:layout_height="267dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/remote_video_view_container"
+        android:layout_width="411dp"
+        android:layout_height="267dp"
+        android:layout_below="@+id/local_video_view_container"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/JoinButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/local_video_view_container" />
+
+    <Button
+        android:id="@+id/JoinButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remote_video_view_container"
+        android:layout_alignStart="@id/remote_video_view_container"
+        android:onClick="joinChannel"
+        android:text="Join"
+        app:layout_constraintBaseline_toBaselineOf="@+id/LeaveButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/LeaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remote_video_view_container"
+        android:layout_alignEnd="@id/remote_video_view_container"
+        android:onClick="leaveChannel"
+        android:text="Leave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/exit_button"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@+id/JoinButton"
+        app:layout_constraintTop_toBottomOf="@+id/remote_video_view_container"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXIT"
+        android:onClick="exitCall"
+        app:layout_constraintBaseline_toBaselineOf="@+id/LeaveButton"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
