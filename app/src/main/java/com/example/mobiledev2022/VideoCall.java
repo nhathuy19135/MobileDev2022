@@ -1,23 +1,25 @@
 package com.example.mobiledev2022;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import io.agora.rtc2.ChannelMediaOptions;
 import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.RtcEngineConfig;
 import io.agora.rtc2.video.VideoCanvas;
-import io.agora.rtc2.ChannelMediaOptions;
 
 public class VideoCall extends AppCompatActivity {
     // Fill the App ID of your project generated on Agora Console.
@@ -25,7 +27,7 @@ public class VideoCall extends AppCompatActivity {
     // Fill the channel name.
     private String channelName = "test";
     // Fill the temp token generated on Agora Console.
-    private String token = "007eJxTYEg/X/tziqp6l+eJ/SlG/zZq/18R63A14YTBBNVpuzcHCzsrMKRapKSmppimGBpZGJgkJRsmJlqYJxmbmBiYWJokmiVaiG22T57K4ph81yyVmZEBAkF8FoaS1OISBgYAlUggfg==";
+    private String token = "007eJxTYNBZ57FQjZ/Fuqjq+pqLc3St/jiderB1tYzJN8u63mMmmi0KDKkWKampKaYphkYWBiZJyYaJiRbmScYmJgYmliaJZokWkt4NyQ2BjAynrnUxMEIhiM/CUJJaXMLAAAAUex79";
     // An integer that identifies the local user.
     private int uid = 0;
     private boolean isJoined = false;
