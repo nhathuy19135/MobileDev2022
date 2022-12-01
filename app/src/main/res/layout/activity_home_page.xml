@@ -7,11 +7,12 @@
     android:background="@drawable/background"
     tools:context=".HomePage">
 
-    <com.makeramen.roundedimageview.RoundedImageView
+    <ImageView
         android:id="@+id/roundedImageView"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_oval="true" />

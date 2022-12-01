@@ -13,7 +13,7 @@ public class Doctor {
     private String field;
     private String gender;
     private String title;
-
+    private String image;
     public Doctor(){}
     public Doctor (String firstName, String lastName, String email, String phoneNumber, String field, String gender, String title){
         this.firstName = firstName;
@@ -23,6 +23,14 @@ public class Doctor {
         this.field = field;
         this.gender = gender;
         this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDocumentId() {

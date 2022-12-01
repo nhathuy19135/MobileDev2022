@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,28 +8,31 @@
         android:id="@+id/formLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
         android:layout_marginStart="25dp"
+        android:layout_marginTop="47dp"
         android:layout_marginEnd="25dp"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/firstNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="First name:" />
+            android:text="First name:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/firstNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="text"
+            android:maxLines="1"
             android:textSize="17sp">
 
-            <requestFocus/>
+            <requestFocus />
         </EditText>
 
         <TextView
@@ -36,16 +40,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Last name:" />
+            android:text="Last name:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/lastNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="text"
+            android:maxLines="1"
             android:textSize="17sp" />
 
         <TextView
@@ -53,85 +57,85 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Email:" />
+            android:text="Email:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
-            android:textSize="17sp"/>
+            android:maxLines="1"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/phoneTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Phone Number:" />
+            android:text="Phone Number:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/phoneNumberEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="textPhonetic"
-            android:textSize="17sp"/>
+            android:maxLines="1"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/fieldTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Field:" />
+            android:text="Field:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/fieldEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textSize="17sp"/>
+            android:maxLines="1"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/genderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Gender:" />
+            android:text="Gender:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/genderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textSize="17sp"/>
+            android:maxLines="1"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Current Title:" />
+            android:text="Current Title:"
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textSize="17sp"/>
+            android:maxLines="1"
+            android:textSize="17sp" />
 
 
     </LinearLayout>
@@ -140,14 +144,14 @@
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="25dp"
-        android:layout_alignParentBottom="true"
         android:background="@android:color/holo_red_dark"
+        android:text="DELETE"
         android:textColor="@android:color/white"
         android:textSize="17sp"
-        android:textStyle="bold"
-        android:text="DELETE"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/okButton"
@@ -158,9 +162,26 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:background="@android:color/holo_green_dark"
+        android:text="CREATE"
         android:textColor="@android:color/white"
         android:textSize="17sp"
-        android:textStyle="bold"
-        android:text="CREATE"/>
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/signUpAvatarDoctor"
+        android:layout_width="68dp"
+        android:layout_height="88dp"
+        android:layout_above="@+id/okButton"
+        android:layout_below="@+id/formLinearLayout"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="-14dp"
+        android:layout_toStartOf="@+id/okButton"
+        android:layout_toEndOf="@+id/deleteButton"
+        android:background="@drawable/ic_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </RelativeLayout>

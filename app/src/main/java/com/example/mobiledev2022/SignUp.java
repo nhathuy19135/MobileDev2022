@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,8 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobiledev2022.databinding.ActivitySignUpBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -38,6 +42,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import database.patient.Patient;
+import database.patient.PatientFirestoreManager;
 
 
 public class SignUp extends AppCompatActivity {
@@ -48,11 +53,12 @@ public class SignUp extends AppCompatActivity {
     private boolean isLoading = false;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    private DatabaseReference databaseReference;
+    private PatientFirestoreManager patientFirestoreManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        patientFirestoreManager = new PatientFirestoreManager();
         firebaseAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -92,10 +98,7 @@ public class SignUp extends AppCompatActivity {
                     }
                 }
             });
-//    private void getImageAvatarView() throws IOException {
-//        Bitmap bit = MediaStore.Images.Media.getBitmap(getContentResolver(),avatarUri);
-//        binding.signUpAvatar.setImageBitmap(bit);
-//    }
+
     private void updateAvatar(String email) {
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading...");
@@ -117,18 +120,10 @@ public class SignUp extends AppCompatActivity {
         });
     }
     private void createUser(Patient newUser) {
-        Log.e("create","test");
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Patients");
-        db.push().setValue(newUser);
-        Map<String,Object> patient = new HashMap<>();
-        patient.put("image",avatarDb);
-        patient.put("patientID",newUser.getDocumentId());
-        patient.put("name",newUser.getName());
-        patient.put("email",newUser.getEmail());
-        FirebaseFirestore mDatabase = FirebaseFirestore.getInstance();
-        mDatabase.collection("Patients").document(newUser.getDocumentId()).set(newUser);
+        this.patientFirestoreManager.newPatient(newUser);
+//        databaseReference = FirebaseDatabase.getInstance().getReference("Patients");
+//        databaseReference.push().setValue(newUser);
     }
-
     private void signUp(){
         isLoading = true;
         firebaseAuth.createUserWithEmailAndPassword(binding.signUpEmailAddress.getText().toString(),binding.signUpPassword.getText().toString())
@@ -181,15 +176,4 @@ public class SignUp extends AppCompatActivity {
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes,Base64.DEFAULT);
     }
-//    private void isLoading() {
-//        if (isLoading) {
-//            binding.signUpProgress.setVisibility(View.VISIBLE);
-//            binding.buttonSignUp.setVisibility(View.INVISIBLE);
-//            binding.signUPLogin.setVisibility(View.INVISIBLE);
-//        } else {
-//            binding.signUpProgress.setVisibility(View.INVISIBLE);
-//            binding.buttonSignUp.setVisibility(View.VISIBLE);
-//            binding.signUPLogin.setVisibility(View.VISIBLE);
-//        }
-//    }
 }

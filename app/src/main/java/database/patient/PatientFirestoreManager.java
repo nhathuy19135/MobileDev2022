@@ -1,6 +1,7 @@
 package database.patient;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -16,7 +17,7 @@ public class PatientFirestoreManager {
         return patientFirestoreManager;
     }
     private FirebaseFirestore fbfs;
-    private PatientFirestoreManager(){
+    public PatientFirestoreManager(){
         fbfs = FirebaseFirestore.getInstance();
         patientReference = fbfs.collection(PatientDBContract.COLLECTION_NAME);
     }
@@ -37,4 +38,5 @@ public class PatientFirestoreManager {
     public void sendTestData(){
         newPatient(new Patient("Nguyen", "Nhat Huy","male","test mail","0123456789"));
     }
+
 }
