@@ -10,11 +10,21 @@ public class Message {
     private String roomID;
     private String date;
     private String messageID;
+    private String imageSender;
     public Message() {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         this.date = dateFormat.format(date);
     }
+
+    public String getImageSender() {
+        return imageSender;
+    }
+
+    public void setImageSender(String imageSender) {
+        this.imageSender = imageSender;
+    }
+
     public void setMessageID(String messageID) {
         this.messageID = messageID;
     }

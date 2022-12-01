@@ -31,7 +31,6 @@ public class Chat extends AppCompatActivity {
     private MessageAdapter messageAdapter;
     private  LinearLayoutManager linearLayoutManager;
     private boolean isLoading ;
-
     private static int firstVisibleInListview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,7 @@ public class Chat extends AppCompatActivity {
 
     public void addMessageToDB() {
         String room = getIntent().getExtras().getString("room");
+        String avatar = getIntent().getExtras().getString("image");
         String userEmail = getIntent().getExtras().getString("userEmail");
         textView.setText(room);
         button_Send.setOnClickListener(view -> {
@@ -71,13 +71,14 @@ public class Chat extends AppCompatActivity {
             message.setMessage(content);
             message.setRoomID(room);
             message.setSender(userEmail);
+            message.setImageSender(avatar);
             sendMessage(message,room);
             addDataToArrayList();
         });
     }
     private void addDataToArrayList() {
         String room = getIntent().getExtras().getString("room");
-        databaseReference = FirebaseDatabase.getInstance().getReference(room);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Roomchat/"+room);
         this.limitsChatLine++;
         Query query = databaseReference.orderByKey().limitToLast(limitsChatLine);
         query.addValueEventListener(new ValueEventListener() {
@@ -108,7 +109,6 @@ public class Chat extends AppCompatActivity {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 if (!isLoading) {
-                    Log.e("view", String.valueOf(linearLayoutManager.findFirstVisibleItemPosition()));
                     if (linearLayoutManager != null && linearLayoutManager.findFirstVisibleItemPosition() == 0
                     ) {
                         loadMore();
@@ -124,7 +124,6 @@ public class Chat extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-//                messageList.remove(messageList.size()-1);
                 int positionScrolling = messageList.size();
                 messageAdapter.notifyItemRemoved(positionScrolling);
                 limitsChatLine +=4 ;
@@ -135,7 +134,7 @@ public class Chat extends AppCompatActivity {
         },1500);
     }
     private void sendMessage(Message message,String room) {
-        databaseReference = FirebaseDatabase.getInstance().getReference(room);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Roomchat/"+room);
         databaseReference.push().setValue(message);
         chatBox.setText("");
     }

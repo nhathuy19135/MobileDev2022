@@ -56,7 +56,6 @@ public class PatientDetailActivity extends AppCompatActivity {
         } else if (operationTypeString.equals(EDITING)){
             okButton.setText("UPDATE");
             deleteButton.setVisibility(View.VISIBLE);
-
             documentId = bundle.getString(DOCUMENT_ID);
             firstNameEditText.setText(bundle.getString(FIELD_FIRST_NAME));
             lastNameEditText.setText(bundle.getString(FIELD_LAST_NAME));

@@ -28,10 +28,8 @@ public class DoctorMainActivity extends AppCompatActivity {
     private FloatingActionButton sendAllTestData;
     private FloatingActionButton addDoctorButton;
     private TextView emptyTextView;
-
     private List<Doctor> doctorList;
     private DoctorFirestoreManager DFM;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
