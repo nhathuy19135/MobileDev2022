@@ -1,5 +1,4 @@
 package database.services;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -16,12 +15,18 @@ import com.example.mobiledev2022.R;
 import database.patient.Patient;
 
 import java.util.List;
-
-
 public class UserAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Patient> userList;
-
+    private Patient user;
     public UserAdapter(List<Patient> userList) {this.userList = userList;}
+
+    public Patient getUser() {
+        return user;
+    }
+
+    public void setUser(Patient user) {
+        this.user = user;
+    }
 
     @NonNull
     @Override
@@ -33,24 +38,20 @@ public class UserAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         addUserToList((UserView) holder,position);
     }
-
     @Override
     public int getItemCount() {
         return userList == null ? 0 : userList.size();
     }
-
     private void addUserToList(UserView viewHolder, int position) {
         Patient user = userList.get(position);
         Bitmap bitmap = decodeIamge(user.getImage());
         viewHolder.avatar.setImageBitmap(bitmap);
-        viewHolder.userName.setText(user.getName());
+        viewHolder.userName.setText(user.getFirstName());
         viewHolder.email.setText(user.getEmail());
     }
-
     class UserView extends RecyclerView.ViewHolder{
         private TextView userName,email;
         private ImageView avatar;
-
         public UserView(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.recylerUserName);

@@ -8,5 +8,5 @@ public final class PatientDBContract {
     public static final String FIELD_EMAIL = "email";
     public static final String FIELD_GENDER = "gender";
     public static final String FIELD_PHONE_NUMBER = "phoneNumber";
-    public static final String FiELD_AVATAR = "avatar";
+    public static final String FIELD_AVATAR = "image";
 }

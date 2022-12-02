@@ -82,7 +82,9 @@ public class PatientDetailActivity extends AppCompatActivity {
             String email = emailEditText.getText().toString();
             String phoneNumber = phoneNumberEditText.getText().toString();
             String gender = genderEditText.getText().toString();
+            String avatar = getIntent().getExtras().getString("image");
             Patient patient = new Patient(firstName, lastName, gender, email, phoneNumber);
+            patient.setImage(avatar);
             if (operationTypeString.equals(CREATING)){
                 PFM.newPatient(patient);
             } else if (operationTypeString.equals(EDITING)){
