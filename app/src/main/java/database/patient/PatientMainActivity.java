@@ -121,6 +121,7 @@ public class PatientMainActivity extends AppCompatActivity {
             intent.putExtra(PatientDBContract.FIELD_EMAIL, patient.getEmail());
             intent.putExtra(PatientDBContract.FIELD_PHONE_NUMBER, patient.getPhoneNumber());
             intent.putExtra(PatientDBContract.FIELD_GENDER, patient.getGender());
+            intent.putExtra(PatientDBContract.FIELD_AVATAR,patient.getImage());
             startActivity(intent);
         }
     }

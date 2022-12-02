@@ -76,7 +76,6 @@ public class HomePage extends AppCompatActivity {
             public void onSuccess(QuerySnapshot querySnapshot) {
                 for (DocumentSnapshot index : querySnapshot.getDocuments()) {
                     Patient a = index.toObject(Patient.class);
-                   // Log.e("fireauth",firebaseAuth.getCurrentUser().getEmail());
                     if (a.getEmail().equals(firebaseAuth.getCurrentUser().getEmail() )) {
                         roundedImageView.setImageBitmap(decodeIamge(a.getImage()));
                         user = a;
