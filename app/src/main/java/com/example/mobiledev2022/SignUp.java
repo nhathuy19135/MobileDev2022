@@ -135,6 +135,7 @@ public class SignUp extends AppCompatActivity {
                         newUser.setEmail(binding.signUpEmailAddress.getText().toString());
                         newUser.setName(binding.signUpUserName.getText().toString());
                         newUser.setImage(avatarDb);
+                        newUser.setRole("Patient");
                         createUser(newUser);
                         updateAvatar(binding.signUpEmailAddress.getText().toString());
                         Toast.makeText(SignUp.this,"Sign Up",Toast.LENGTH_SHORT).show();

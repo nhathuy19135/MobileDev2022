@@ -10,15 +10,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.Date;
 import database.Entity.Message;
+import database.patient.Patient;
 import database.services.MessageAdapter;
 public class Chat extends AppCompatActivity {
     private Button button_Send;
@@ -30,11 +38,20 @@ public class Chat extends AppCompatActivity {
     private ArrayList<Message> messageList;
     private MessageAdapter messageAdapter;
     private  LinearLayoutManager linearLayoutManager;
+
     private boolean isLoading ;
     private static int firstVisibleInListview;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
+    private Patient user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firestore = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        this.limitsChatLine = 6;
+        findUserById();
         initView();
         addDataToArrayList();
         setUpRecycle();
@@ -42,7 +59,6 @@ public class Chat extends AppCompatActivity {
         addMessageToDB();
     }
     private void  initView() {
-        this.limitsChatLine = 6;
         this.isLoading = false;
         setContentView(R.layout.activity_chat);
         button_Send = findViewById(R.id.button_Send);
@@ -61,23 +77,24 @@ public class Chat extends AppCompatActivity {
     }
 
     public void addMessageToDB() {
-        String room = getIntent().getExtras().getString("room");
-        String avatar = getIntent().getExtras().getString("image");
         String userEmail = getIntent().getExtras().getString("userEmail");
-        textView.setText(room);
+        String avatar = getIntent().getExtras().getString("image");
+        String roomdb = getIntent().getExtras().getString("roomdb");
+        String name = getIntent().getExtras().getString("name");
+        textView.setText(name);
         button_Send.setOnClickListener(view -> {
             String content = chatBox.getText().toString().trim();
             Message message = new Message();
             message.setMessage(content);
-            message.setRoomID(room);
+            message.setRoomID(roomdb);
             message.setSender(userEmail);
             message.setImageSender(avatar);
-            sendMessage(message,room);
+            sendMessage(message,roomdb);
             addDataToArrayList();
         });
     }
     private void addDataToArrayList() {
-        String room = getIntent().getExtras().getString("room");
+        String room = getIntent().getExtras().getString("roomdb");
         databaseReference = FirebaseDatabase.getInstance().getReference("Roomchat/"+room);
         this.limitsChatLine++;
         Query query = databaseReference.orderByKey().limitToLast(limitsChatLine);
@@ -137,5 +154,22 @@ public class Chat extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Roomchat/"+room);
         databaseReference.push().setValue(message);
         chatBox.setText("");
+    }
+
+    private void findUserById() {
+        firestore.collection("patient").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+                for (DocumentSnapshot index : querySnapshot.getDocuments()) {
+                    Patient a = index.toObject(Patient.class);
+                    if (a.getEmail().equals(firebaseAuth.getCurrentUser().getEmail() )) {
+                        user = a;
+                    }
+                }
+            }
+        });
+
+
+
     }
 }
