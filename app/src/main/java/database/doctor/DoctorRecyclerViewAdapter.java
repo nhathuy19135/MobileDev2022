@@ -13,9 +13,7 @@ import java.util.List;
 
 public class DoctorRecyclerViewAdapter extends RecyclerView.Adapter<DoctorRecyclerViewAdapter.ViewHolder> {
     private List doctorList;
-
     private DoctorMainActivity.DoctorRecyclerViewOnItemClickListener doctorRecyclerViewOnItemClickListener;
-
     DoctorRecyclerViewAdapter(List doctorList, DoctorMainActivity.DoctorRecyclerViewOnItemClickListener doctorRecyclerViewOnItemClickListener){
         this.doctorList = doctorList;
         this.doctorRecyclerViewOnItemClickListener = doctorRecyclerViewOnItemClickListener;

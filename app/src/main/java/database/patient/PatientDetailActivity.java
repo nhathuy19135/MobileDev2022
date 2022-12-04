@@ -26,7 +26,7 @@ public class PatientDetailActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private EditText genderEditText;
-
+    private EditText roleEditText;
     private Button deleteButton;
     private Button okButton;
 
@@ -41,7 +41,7 @@ public class PatientDetailActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         genderEditText = findViewById(R.id.genderEditText);
-
+        roleEditText = findViewById(R.id.roleEditText);
         deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(new PatientDetailActivity.DeleteButtonOnClickListener());
         okButton = findViewById(R.id.okButton);
@@ -83,7 +83,9 @@ public class PatientDetailActivity extends AppCompatActivity {
             String phoneNumber = phoneNumberEditText.getText().toString();
             String gender = genderEditText.getText().toString();
             String avatar = getIntent().getExtras().getString("image");
+            String role = roleEditText.getText().toString();
             Patient patient = new Patient(firstName, lastName, gender, email, phoneNumber);
+            patient.setRole(role);
             patient.setImage(avatar);
             if (operationTypeString.equals(CREATING)){
                 PFM.newPatient(patient);

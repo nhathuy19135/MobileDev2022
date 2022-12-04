@@ -12,7 +12,7 @@ public class Patient {
     private String image;
     private String phoneNumber;
     private String name;
-
+    private String role;
     public Patient(){};
 
     public Patient(String firstName, String lastName, String gender, String email,String phoneNumber) {
@@ -21,6 +21,14 @@ public class Patient {
         this.gender = gender;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getEmail() {

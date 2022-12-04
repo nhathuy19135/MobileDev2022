@@ -54,21 +54,24 @@ public class HomePage extends AppCompatActivity {
     private Button button_patient;
     private Button button_call;
     private Patient user;
+    private String avatar;
+    private HomePage.RoomchatClick roomchatClick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_home_page);
         user = new Patient();
+        roomchatClick = new HomePage.RoomchatClick();
         recyclerView = findViewById(R.id.recyclerUser);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
         roundedImageView = findViewById(R.id.roundedImageView);
+        findUserById();
+        setUpAdapter();
         initView();
         setUpUserList();
-        setUpAdapter();
-        findUserById();
     }
     private void findUserById() {
         firestore.collection("patient").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -79,6 +82,7 @@ public class HomePage extends AppCompatActivity {
                     if (a.getEmail().equals(firebaseAuth.getCurrentUser().getEmail() )) {
                         roundedImageView.setImageBitmap(decodeIamge(a.getImage()));
                         user = a;
+                        avatar = a.getImage();
                     }
                 }
             }
@@ -90,6 +94,7 @@ public class HomePage extends AppCompatActivity {
         this.linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(userAdapter);
+        userAdapter.setRoomchatClick(roomchatClick);
     }
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -109,10 +114,9 @@ public class HomePage extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent(HomePage.this, Chat.class);
                     intent.putExtra("userEmail", user.getEmail());
-                    intent.putExtra("room", room);
+                    intent.putExtra("roomdb", room);
                     intent.putExtra("image",user.getImage());
                     intent.putExtra("userName",user.getFirstName());
-                   // intent.putExtra("userAvatar",user.getImage());
                     startActivity(intent);
                 }
             }
@@ -165,17 +169,44 @@ public class HomePage extends AppCompatActivity {
                 if (querySnapshot.isEmpty()){
                     showToast("No doctor");
                 } else {
-                    List<Patient> list =  querySnapshot.toObjects(Patient.class);
-                    userList.addAll(list);
+                    for(Patient index : querySnapshot.toObjects(Patient.class)) {
+                            if (!index.getEmail().equals(firebaseAuth.getCurrentUser().getEmail()) && index.getRole().equals("Doctor")) {
+                                userList.add(index);
+                            }
+                    }
                 }
                 userAdapter.notifyDataSetChanged();
             }
         });
-
     }
     public Bitmap decodeIamge(String imageBitmap) {
         byte[] bytes = Base64.decode(imageBitmap,Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
     }
-
+    public class RoomchatClick implements  View.OnClickListener {
+        private Patient user;
+        @Override
+        public void onClick(View v) {
+                int position = recyclerView.indexOfChild(v);
+                Patient temp = userList.get(position);
+                String name = temp.getFirstName();
+                Intent intent = new Intent(HomePage.this, Chat.class);
+                if (this.user.getRole().equals("Doctor")) {
+                    String room = temp.getDocumentId()+this.user.getDocumentId();
+                    intent.putExtra("roomdb", room);
+                    intent.putExtra("name",name);
+                    intent.putExtra("image",this.user.getImage());
+                    startActivity(intent);
+                } else {
+                    String room = this.user.getDocumentId() + temp.getDocumentId();
+                    intent.putExtra("roomdb", room);
+                    intent.putExtra("name",name);
+                    intent.putExtra("image",this.user.getImage());
+                    startActivity(intent);
+                }
+            }
+        public void setUser(Patient user) {
+            this.user = user;
+        }
+    }
 }
