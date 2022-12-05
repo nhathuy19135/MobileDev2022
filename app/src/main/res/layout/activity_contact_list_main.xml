@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mobiledev2022.database.contact.ContactListMainActivity">
+    tools:context="database.contact.ContactListMainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
