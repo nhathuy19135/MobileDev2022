@@ -1,13 +1,20 @@
 package database.patient;
 
-import static database.patient.PatientDBContract.*;
-
-import androidx.appcompat.app.AppCompatActivity;
+import static database.patient.PatientDBContract.DOCUMENT_ID;
+import static database.patient.PatientDBContract.FIELD_EMAIL;
+import static database.patient.PatientDBContract.FIELD_FIRST_NAME;
+import static database.patient.PatientDBContract.FIELD_GENDER;
+import static database.patient.PatientDBContract.FIELD_LAST_NAME;
+import static database.patient.PatientDBContract.FIELD_PHONE_NUMBER;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobiledev2022.R;
 
@@ -26,7 +33,7 @@ public class PatientDetailActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText phoneNumberEditText;
     private EditText genderEditText;
-    private EditText roleEditText;
+    private Spinner roleEditText;
     private Button deleteButton;
     private Button okButton;
 
@@ -48,6 +55,9 @@ public class PatientDetailActivity extends AppCompatActivity {
         okButton.setOnClickListener(new PatientDetailActivity.OkButtonOnClickListener());
 
         Bundle bundle = getIntent().getExtras();
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.role_list, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        roleEditText.setAdapter(adapter);
 
         operationTypeString = bundle.getString(OPERATION);
         if (operationTypeString.equals(CREATING)){
@@ -83,7 +93,7 @@ public class PatientDetailActivity extends AppCompatActivity {
             String phoneNumber = phoneNumberEditText.getText().toString();
             String gender = genderEditText.getText().toString();
             String avatar = getIntent().getExtras().getString("image");
-            String role = roleEditText.getText().toString();
+            String role = roleEditText.getSelectedItem().toString();
             Patient patient = new Patient(firstName, lastName, gender, email, phoneNumber);
             patient.setRole(role);
             patient.setImage(avatar);
