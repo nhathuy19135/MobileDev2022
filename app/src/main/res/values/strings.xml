@@ -13,6 +13,51 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_video_call">VideoCall</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="doc_cough_text1">
+Coughs can be either acute or chronic. Acute coughs begin suddenly and usually last for less than three weeks, according to the Cleveland Clinic.This type of cough is the one you most often get with a cold, flu, or acute bronchitis.
+\n\n
+<b>Causes of a Cough:</b>\n
+-Common cold and influenza (flu)\n
+-Inhaling an irritant (such as dust, chemicals, or a foreign body)\n
+-Pneumonia\n
+-Whooping cough\n
+-Acute bronchitis\n
+-Sinus infection\n
+<b>Complications of a Cough:</b>\n
+Most coughs are not serious and will go away on their own or after the underlying cause has been treated. Call your doctor or healthcare provider if your cough does not go away after a few weeks or if it involves the following symptoms:\n\n
+-Coughing up thick mucus that is green to yellow in color\n
+-Wheezing\n
+-Fever\n
+-Shortness of breath\n
+-Fainting\n
+-Ankle swelling or weight loss\n
+<b>Duration of a Cough:</b>\n
+Coughs can last for less than two weeks, or up to eight weeks or longer. Acute coughs typically last for less than three weeks. Chronic coughs last longer than eight weeks (or longer than four weeks in children).
+\n\n
+<b>Treatment and Medication Options for Coughs:</b>\n
+A cough can be treated in a variety of ways, depending on the cause. For healthy adults, most cough remedies will involve self-care.\n\n
+
+A cough that results from a virus can’t be treated with antibiotics. You can, however, soothe it with the following home remedies:\n\n
+
+-Keep hydrated by drinking plenty of fluids. Liquid helps thin the mucus in your throat, and warm liquids, such as broth, tea, or lemon juice, are soothing.\n
+-Suck on cough drops or hard candies, which may ease a dry cough (one that doesn’t produce phlegm/mucus) and soothe an irritated throat.\n
+-Have a spoonful of honey. One teaspoon of honey may help loosen a cough (never give honey to children younger than 1 year old because honey can contain bacteria harmful to infants).
+Use a cool mist humidifier or take a steamy shower to moisturize the air.\n\n
+Other natural remedies include:\n\n
+-Elevating your head with extra pillows when you’re sleeping
+Gargling warm salt water to remove mucus and soothe your throat
+Medication Options\n
+-Cough medicines are typically used only for acute coughs that cause a lot of discomfort, interfere with sleep, and are not associated with any potentially more serious symptoms.\n
+-Over-the-counter cough and cold medicines, like cough syrups and cough suppressants, may help you treat the symptoms of a cough. But research suggests that these medicines don’t work any better than placebos (inactive medicines).\n
+-If your cough is caused by an infection, your doctor might prescribe an antibiotic or antiviral medication.\n
+-If you have GERD, you may be prescribed a proton pump inhibitor, which is a kind of medicine that reduces the amount of stomach acid produced by glands in the lining of your stomach.\n\n
+<b>Highlights include:</b>
+
+
+
+    </string>
+
     <string-array name="role_list">
         <item>Patient</item>
         <item>Doctor</item>
