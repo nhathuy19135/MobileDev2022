@@ -12,29 +12,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import database.contact.ContactListMainActivity;
-import database.doctor.DoctorMainActivity;
-import database.patient.Patient;
-import database.patient.PatientMainActivity;
+
 import com.example.mobiledev2022.databinding.ActivityChatBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
-import java.util.List;
+
+import database.patient.Patient;
+import database.patient.PatientMainActivity;
 import database.services.UserAdapter;
 public class HomePage extends AppCompatActivity {
     private DatabaseReference databaseReference;
@@ -102,7 +96,7 @@ public class HomePage extends AppCompatActivity {
     private void initView() {
         String userEmail = firebaseAuth.getCurrentUser().getUid().toString();
         button_chatRoom = findViewById(R.id.button_roomChat);
-        button_logout = findViewById(R.id.button_logout);
+//        button_logout = findViewById(R.id.button_logout);
         roomID = findViewById(R.id.roomID);
         button_chatRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,44 +115,44 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
-        button_call = findViewById(R.id.button_call);
-        button_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomePage.this,VideoCall.class));
-                finish();
-            }
-        });
-        button_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                startActivity(new Intent(HomePage.this, MainActivity.class));
-                finish();
-            }
-        });
-        button_crud = findViewById(R.id.button_crud);
-        button_crud.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, ContactListMainActivity.class));
-            }
-        });
-        button_doctor = findViewById(R.id.button_doctor);
-        button_doctor.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
-            }
-        });
-        button_patient = findViewById(R.id.button_patient);
-        button_patient.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, PatientMainActivity.class));
-            }
-        });
-    }
+//        button_call = findViewById(R.id.button_call);
+//        button_call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(HomePage.this,VideoCall.class));
+//                finish();
+//            }
+//        });
+//        button_logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                firebaseAuth.signOut();
+//                startActivity(new Intent(HomePage.this, MainActivity.class));
+//                finish();
+//            }
+//        });
+//        button_crud = findViewById(R.id.button_crud);
+//        button_crud.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomePage.this, ContactListMainActivity.class));
+//            }
+//        });
+//        button_doctor = findViewById(R.id.button_doctor);
+//        button_doctor.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
+//            }
+//        });
+//        button_patient = findViewById(R.id.button_patient);
+//        button_patient.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomePage.this, PatientMainActivity.class));
+//            }
+//        });
+//    }
 
     private void setUpUserList() {
         String email = firebaseAuth.getCurrentUser().getEmail();
