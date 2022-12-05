@@ -7,9 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="backgroundStartColor">#EE82EE</color>
-    <color name="backgroundEndColor">#7FFFD4</color>
-    <color name="buttonlogin">#40E0D0</color>
+    <color name="backgroundStartColor">#db0030</color>
+    <color name="backgroundEndColor">#004d98</color>
+    <color name="buttonlogin">#edbb00</color>
     <color name="title_homepage">#DAA520</color>
     <color name="background_toolbar_homepage">#F6F7F5</color>
     <color name="colorPrimary">#3F51B5</color>
