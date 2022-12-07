@@ -66,6 +66,8 @@ public class Chat extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         recyclerView = findViewById(R.id.recycler1);
         recyclerView.setHasFixedSize(true);
+        String nameDoctor = "Doctor" + getIntent().getExtras().getString("name");
+        textView.setText(nameDoctor);
     }
     private void setUpRecycle() {
         messageList = new ArrayList<>();

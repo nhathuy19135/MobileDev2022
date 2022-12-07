@@ -6,18 +6,27 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobiledev2022.databinding.ActivityChatBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,10 +36,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import database.doctor.DoctorMainActivity;
 import database.patient.Patient;
 import database.patient.PatientMainActivity;
 import database.services.UserAdapter;
 public class HomePage extends AppCompatActivity {
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private Button button_logout;
@@ -46,7 +59,9 @@ public class HomePage extends AppCompatActivity {
     private Button button_crud;
     private Button button_doctor;
     private Button button_patient;
-    private Button button_call;
+    private CardView cardViewCall;
+//    private Button button_call;
+    private ImageView callImageview;
     private Patient user;
     private String avatar;
     private HomePage.RoomchatClick roomchatClick;
@@ -94,10 +109,52 @@ public class HomePage extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
     private void initView() {
-        String userEmail = firebaseAuth.getCurrentUser().getUid().toString();
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.menuNabigation);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:{
+                        showToast("Home");
+                        break;
+                    }
+                    case R.id.profile: {
+                        startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
+                        break;
+                    }
+                    case R.id.patientList:{
+                        startActivity(new Intent(HomePage.this, PatientMainActivity.class));
+                        break;
+                    }
+                    case R.id.logout:{
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(HomePage.this, MainActivity.class));
+                        finish();
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
         button_chatRoom = findViewById(R.id.button_roomChat);
-//        button_logout = findViewById(R.id.button_logout);
+        cardViewCall = findViewById(R.id.card3);
+        cardViewCall.setOnClickListener(
+                new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this,VideoCall.class));
+                finish();
+            }
+        });
+        //button_logout = findViewById(R.id.button_logout);
+
         roomID = findViewById(R.id.roomID);
+
         button_chatRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +172,7 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
+    }
 //        button_call = findViewById(R.id.button_call);
 //        button_call.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -122,6 +180,10 @@ public class HomePage extends AppCompatActivity {
 //                startActivity(new Intent(HomePage.this,VideoCall.class));
 //                finish();
 //            }
+
+
+
+
 //        });
 //        button_logout.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -173,6 +235,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
+
     public Bitmap decodeIamge(String imageBitmap) {
         byte[] bytes = Base64.decode(imageBitmap,Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
@@ -201,6 +264,22 @@ public class HomePage extends AppCompatActivity {
             }
         public void setUser(Patient user) {
             this.user = user;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 }

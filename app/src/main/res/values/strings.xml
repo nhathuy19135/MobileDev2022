@@ -15,6 +15,7 @@
     <string name="title_activity_video_call">VideoCall</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="doc_cough_text1">
+        <string name="open">Open Navigation</string>
 Coughs can be either acute or chronic. Acute coughs begin suddenly and usually last for less than three weeks, according to the Cleveland Clinic.This type of cough is the one you most often get with a cold, flu, or acute bronchitis.
 \n\n
 <b>Causes of a Cough:</b>\n
@@ -57,6 +58,8 @@ Medication Options\n
 
 
     </string>
+    <string name="open">Open Navigatio</string>
+    <string name="close">Close navigation</string>
 
     <string-array name="role_list">
         <item>Patient</item>

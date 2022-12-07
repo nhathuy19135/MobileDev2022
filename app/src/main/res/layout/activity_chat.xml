@@ -7,10 +7,22 @@
     android:background="@drawable/background"
     tools:context=".Chat"
     >
+
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        tools:layout_editor_absoluteX="-81dp"
+        tools:layout_editor_absoluteY="27dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler1"
+        android:layout_width="409dp"
+        android:layout_height="467dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/layout123"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         />
     <TextView
         android:id="@+id/textView"
@@ -21,36 +33,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:id="@+id/chatBox"
-        android:layout_width="match_parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout123"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:hint="test chat"
-        android:inputType="textCapSentences|textMultiLine|textUri"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/recycler1">
 
-    <Button
-        android:id="@+id/button_Send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_send_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent" />
+        <EditText
+            android:id="@+id/chatBox"
+            android:layout_width="319dp"
+            android:layout_height="50dp"
+            android:inputType="textCapSentences|textMultiLine|textUri"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/button_Send"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler1"
-        android:layout_width="409dp"
-        android:layout_height="467dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/chatBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        />
+        <Button
+            android:id="@+id/button_Send"
+            android:layout_width="60dp"
+            android:layout_height="44dp"
+            android:background="@drawable/button_send_message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
