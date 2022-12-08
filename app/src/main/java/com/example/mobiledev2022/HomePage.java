@@ -55,13 +55,7 @@ public class HomePage extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
     private FirebaseFirestore firestore;
-    private ImageView roundedImageView;
-    private Button button_crud;
-    private Button button_doctor;
-    private Button button_patient;
     private CardView cardViewCall;
-//    private Button button_call;
-    private ImageView callImageview;
     private Patient user;
     private String avatar;
     private HomePage.RoomchatClick roomchatClick;
@@ -76,7 +70,7 @@ public class HomePage extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
-        roundedImageView = findViewById(R.id.roundedImageView);
+      //  roundedImageView = findViewById(R.id.roundedImageView);
         findUserById();
         setUpAdapter();
         initView();
@@ -89,7 +83,7 @@ public class HomePage extends AppCompatActivity {
                 for (DocumentSnapshot index : querySnapshot.getDocuments()) {
                     Patient a = index.toObject(Patient.class);
                     if (a.getEmail().equals(firebaseAuth.getCurrentUser().getEmail() )) {
-                        roundedImageView.setImageBitmap(decodeIamge(a.getImage()));
+                      //  roundedImageView.setImageBitmap(decodeIamge(a.getImage()));
                         user = a;
                         avatar = a.getImage();
                     }
@@ -119,24 +113,24 @@ public class HomePage extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.home:{
-                        showToast("Home");
-                        break;
-                    }
-                    case R.id.profile: {
-                        startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
-                        break;
-                    }
-                    case R.id.patientList:{
-                        startActivity(new Intent(HomePage.this, PatientMainActivity.class));
-                        break;
-                    }
-                    case R.id.logout:{
+                    case R.id.logout:
+                        showToast("logout");
                         firebaseAuth.signOut();
                         startActivity(new Intent(HomePage.this, MainActivity.class));
                         finish();
                         break;
-                    }
+                    case R.id.home:
+                        showToast("Home");
+                        break;
+                    case R.id.profile:
+                        showToast("Profile");
+                        startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
+                        break;
+                    case R.id.patientList:
+                        showToast("patientList");
+                        startActivity(new Intent(HomePage.this, PatientMainActivity.class));
+                        break;
+
                 }
                 return false;
             }
@@ -151,7 +145,6 @@ public class HomePage extends AppCompatActivity {
                 finish();
             }
         });
-        //button_logout = findViewById(R.id.button_logout);
 
         roomID = findViewById(R.id.roomID);
 
