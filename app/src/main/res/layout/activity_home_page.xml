@@ -1,94 +1,432 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/drawerLayout"
+    tools:context=".HomePage"
     android:background="@drawable/background"
-    tools:context=".HomePage">
+    >
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            app:menu="@menu/bottom_nav_menu"
+            android:id="@+id/menuNabigation"
+            android:layout_gravity="start"
+            />
+        <ScrollView
+            android:id="@+id/allFeatureScrollView"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    <ImageView
-        android:id="@+id/roundedImageView"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_oval="true" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerUser"
-        android:layout_width="409dp"
-        android:layout_height="467dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button_roomChat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roomID" />
-    <EditText
-        android:id="@+id/roomID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Room ID"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@+id/roundedImageView"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp" />
+                <TextView
+                    android:id="@+id/serviceTitles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27dp"
+                    android:text="Services"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    ></TextView>
 
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_crud"
-        tools:ignore="MissingConstraints" />
+                <GridLayout
+                    android:id="@+id/serviceList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/serviceTitles"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:columnCount="1"
+                    android:rowCount="4">
 
-    <Button
-        android:id="@+id/button_roomChat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="enter room"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150sp"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/doctor"></ImageView>
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"></Space>
+
+                            <EditText
+                                android:id="@+id/roomID"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:hint="Insert doctor name"
+                                android:inputType="text"
+                                />
+                            <Button
+                                android:id="@+id/button_roomChat"
+                                android:text="enter\nroom"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150sp"
+                        android:layout_row="2"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="7">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/ic_baseline_local_phone_24"></ImageView>
+
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"></Space>
+
+                            <TextView
+                                android:id="@+id/callbutton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="Video Call"
+                                android:textSize="35sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="150sp"
+                        android:layout_row="3"
+                        android:layout_column="0"
+                        android:layout_columnWeight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="8dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="6">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:src="@drawable/other"></ImageView>
+
+                            <Space
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"></Space>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="Other Services"
+                                android:textSize="35sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+
+                <TextView
+                    android:id="@+id/commonSymptomsTitles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/serviceList"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Most Common Symptoms"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    ></TextView>
+
+                <HorizontalScrollView
+                    android:id="@+id/commonSymptomsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commonSymptomsTitles"
+                    android:scrollbarThumbHorizontal="@null">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="20dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_cough"
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="5dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/symptomImg1"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/cough"
+
+                                    ></ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/symptomImg1"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Cough"></TextView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="5dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/symptomImg2"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/headache"
+
+                                    ></ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/symptomImg2"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Headache"></TextView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="5dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/symptomImg3"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:src="@drawable/cold"
+
+                                    ></ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/symptomImg3"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Common Cold"></TextView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
 
-    <Button
-        android:id="@+id/button_crud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="crud test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="5dp">
 
-    <Button
-        android:id="@+id/button_doctor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="doctor crud"
-        app:layout_constraintBottom_toTopOf="@+id/button_crud"
-        app:layout_constraintStart_toStartOf="parent" />
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center">
 
-    <Button
-        android:id="@+id/button_patient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="patient crud"
-        app:layout_constraintBottom_toTopOf="@+id/button_doctor"
-        app:layout_constraintStart_toStartOf="parent" />
+                                <ImageView
+                                    android:id="@+id/symptomImg4"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:src="@drawable/stomach_flu"
 
-    <Button
-        android:id="@+id/button_call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CALL"
-        app:layout_constraintBottom_toTopOf="@+id/button_roomChat"
-        app:layout_constraintEnd_toEndOf="parent" />
+                                    ></ImageView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/symptomImg4"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Stomachache"></TextView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="5dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/symptomImg5"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/soar_throat"
+
+                                    ></ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/symptomImg5"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Soar Throat"></TextView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            app:cardElevation="5dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/symptomImg6"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/fever"
+
+                                    ></ImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/symptomImg6"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:text="Fever"></TextView>
+                            </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/topDoctorTitles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/commonSymptomsList"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Doctor List"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white">
+
+                </TextView>
+
+                <GridLayout
+                    android:id="@+id/topDoctorList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/topDoctorTitles"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:columnCount="1"
+                    android:rowCount="5">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerUser"
+                        android:layout_width="409dp"
+                        android:layout_height="467dp"
+                        android:scrollbars="vertical"
+                        app:layout_constraintBottom_toTopOf="@+id/button_roomChat"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/roomID" />
+                </GridLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>

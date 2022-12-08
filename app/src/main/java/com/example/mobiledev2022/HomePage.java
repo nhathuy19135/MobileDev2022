@@ -6,6 +6,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,30 +16,34 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import database.contact.ContactListMainActivity;
+
+import com.example.mobiledev2022.databinding.ActivityChatBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+
 import database.doctor.DoctorMainActivity;
 import database.patient.Patient;
 import database.patient.PatientMainActivity;
-import com.example.mobiledev2022.databinding.ActivityChatBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import java.util.ArrayList;
-import java.util.List;
 import database.services.UserAdapter;
 public class HomePage extends AppCompatActivity {
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private Button button_logout;
@@ -48,11 +55,7 @@ public class HomePage extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView recyclerView;
     private FirebaseFirestore firestore;
-    private ImageView roundedImageView;
-    private Button button_crud;
-    private Button button_doctor;
-    private Button button_patient;
-    private Button button_call;
+    private CardView cardViewCall;
     private Patient user;
     private String avatar;
     private HomePage.RoomchatClick roomchatClick;
@@ -67,7 +70,7 @@ public class HomePage extends AppCompatActivity {
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
-        roundedImageView = findViewById(R.id.roundedImageView);
+      //  roundedImageView = findViewById(R.id.roundedImageView);
         findUserById();
         setUpAdapter();
         initView();
@@ -80,7 +83,7 @@ public class HomePage extends AppCompatActivity {
                 for (DocumentSnapshot index : querySnapshot.getDocuments()) {
                     Patient a = index.toObject(Patient.class);
                     if (a.getEmail().equals(firebaseAuth.getCurrentUser().getEmail() )) {
-                        roundedImageView.setImageBitmap(decodeIamge(a.getImage()));
+                      //  roundedImageView.setImageBitmap(decodeIamge(a.getImage()));
                         user = a;
                         avatar = a.getImage();
                     }
@@ -100,10 +103,51 @@ public class HomePage extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
     private void initView() {
-        String userEmail = firebaseAuth.getCurrentUser().getUid().toString();
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.menuNabigation);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.logout:
+                        showToast("logout");
+                        firebaseAuth.signOut();
+                        startActivity(new Intent(HomePage.this, MainActivity.class));
+                        finish();
+                        break;
+                    case R.id.home:
+                        showToast("Home");
+                        break;
+                    case R.id.profile:
+                        showToast("Profile");
+                        startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
+                        break;
+                    case R.id.patientList:
+                        showToast("patientList");
+                        startActivity(new Intent(HomePage.this, PatientMainActivity.class));
+                        break;
+
+                }
+                return false;
+            }
+        });
         button_chatRoom = findViewById(R.id.button_roomChat);
-        button_logout = findViewById(R.id.button_logout);
+        cardViewCall = findViewById(R.id.card3);
+        cardViewCall.setOnClickListener(
+                new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomePage.this,VideoCall.class));
+                finish();
+            }
+        });
+
         roomID = findViewById(R.id.roomID);
+
         button_chatRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,44 +165,49 @@ public class HomePage extends AppCompatActivity {
                 }
             }
         });
-        button_call = findViewById(R.id.button_call);
-        button_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomePage.this,VideoCall.class));
-                finish();
-            }
-        });
-        button_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                firebaseAuth.signOut();
-                startActivity(new Intent(HomePage.this, MainActivity.class));
-                finish();
-            }
-        });
-        button_crud = findViewById(R.id.button_crud);
-        button_crud.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, ContactListMainActivity.class));
-            }
-        });
-        button_doctor = findViewById(R.id.button_doctor);
-        button_doctor.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
-            }
-        });
-        button_patient = findViewById(R.id.button_patient);
-        button_patient.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, PatientMainActivity.class));
-            }
-        });
     }
+//        button_call = findViewById(R.id.button_call);
+//        button_call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(HomePage.this,VideoCall.class));
+//                finish();
+//            }
+
+
+
+
+//        });
+//        button_logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                firebaseAuth.signOut();
+//                startActivity(new Intent(HomePage.this, MainActivity.class));
+//                finish();
+//            }
+//        });
+//        button_crud = findViewById(R.id.button_crud);
+//        button_crud.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomePage.this, ContactListMainActivity.class));
+//            }
+//        });
+//        button_doctor = findViewById(R.id.button_doctor);
+//        button_doctor.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomePage.this, DoctorMainActivity.class));
+//            }
+//        });
+//        button_patient = findViewById(R.id.button_patient);
+//        button_patient.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(HomePage.this, PatientMainActivity.class));
+//            }
+//        });
+//    }
 
     private void setUpUserList() {
         String email = firebaseAuth.getCurrentUser().getEmail();
@@ -179,6 +228,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
     }
+
     public Bitmap decodeIamge(String imageBitmap) {
         byte[] bytes = Base64.decode(imageBitmap,Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes,0,bytes.length);
@@ -207,6 +257,22 @@ public class HomePage extends AppCompatActivity {
             }
         public void setUser(Patient user) {
             this.user = user;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
 }
