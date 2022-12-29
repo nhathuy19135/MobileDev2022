@@ -9,13 +9,7 @@
     tools:context=".HomePage"
     android:background="@drawable/background"
     >
-        <com.google.android.material.navigation.NavigationView
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            app:menu="@menu/bottom_nav_menu"
-            android:id="@+id/menuNabigation"
-            android:layout_gravity="start"
-            />
+
         <ScrollView
             android:id="@+id/allFeatureScrollView"
             android:layout_marginTop="50dp"
@@ -429,4 +423,11 @@
             </RelativeLayout>
 
         </ScrollView>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        app:menu="@menu/bottom_nav_menu"
+        android:id="@+id/menuNabigation"
+        android:layout_gravity="start"
+        />
 </androidx.drawerlayout.widget.DrawerLayout>
