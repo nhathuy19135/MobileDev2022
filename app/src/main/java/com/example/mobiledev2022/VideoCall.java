@@ -27,7 +27,7 @@ public class VideoCall extends AppCompatActivity {
     // Fill the channel name.
     private String channelName = "test";
     // Fill the temp token generated on Agora Console.
-    private String token = "007eJxTYEjP/rS0Vfylf2DYwUn6Kp0KVwIdXF937b4j18vz9Y+h2zYFhlSLlNTUFNMUQyMLA5OkZMPERAvzJGMTEwMTS5NEs0QLKfcVyQ2BjAw6xwIZGRkgEMRnYShJLS5hYAAATVEfBw==";
+    private String token = "007eJxTYDg092enetcersAahx833m6/VVSzLqOzP/e05N+V+oKxGbcUGFItUlJTU0xTDI0sDEySkg0TEy3Mk4xNTAxMLE0SzRIt8uo2JzcEMjIoBuUwMjJAIIjPwlCSWlzCwAAAAmYhIA==";
     // An integer that identifies the local user.
     private int uid = 0;
     private boolean isJoined = false;
